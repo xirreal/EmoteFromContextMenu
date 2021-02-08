@@ -1,4 +1,4 @@
-import {webpackModules} from "@goosemod/discord";
+import * as webpackModules from "@goosemod/webpack";
 import {contextMenu} from "@goosemod/patcher";
 
 let unpatch;
@@ -31,5 +31,9 @@ export default {
         },
       });
     },
+    
+    onRemove: () => {
+      unpatch();
+    }
   },
 };
