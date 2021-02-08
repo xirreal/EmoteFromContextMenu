@@ -2,7 +2,7 @@
   "main": "index.js",
 
   "name": "Create Emoji From Context Menu",
-  "description": "Adds context menu action to clone custom emoji's to other servers.",
+  "description": "Adds context menu action to create emojis from images/other emojis and instantly upload them.",
 
   "tags": ["context menu", "quick-actions"],
 
