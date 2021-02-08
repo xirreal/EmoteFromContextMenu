@@ -1,0 +1,12 @@
+{
+  "main": "index.js",
+
+  "name": "Create Emoji From Context Menu",
+  "description": "Adds context menu action to clone custom emoji's to other servers.",
+
+  "tags": ["context menu", "quick-actions"],
+
+  "authors": ["150745989836308480"],
+
+  "version": "1.0.0"
+}
