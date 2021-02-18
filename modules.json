@@ -1,0 +1,23 @@
+{
+  "modules": [
+    {
+      "name": "Create Emoji From Context Menu",
+      "description": "Adds context menu action to create emojis from images/other emojis and instantly upload them.",
+      "version": "1.0.0",
+      "tags": ["context menu", "quick-actions"],
+      "authors": ["150745989836308480"],
+      "hash": "77131b5b133ec4b53fa32c30e6bf01b8c185969104a02cc6cd52a75338dad03d4a021db298532491da76775c1a9a24b49a0d8090b98934ef78b81e6195128d31",
+      "github": {"stars": 1, "repo": "Cynosphere/hjonk"}
+    },
+    {
+      "name": "Old Quote",
+      "description": "Adds back the old quoting feature.",
+      "version": "1.0.0",
+      "tags": ["context menu", "quick-actions"],
+      "authors": ["150745989836308480"],
+      "hash": "42a07e9a1454c1d8d8c65c292f06e821dfbddc18a6ba87d076a258d6ae1948a3e12735b4cba6b05f7ba020babf6cb5ef49c6088994a6edec3b33780fb48da745",
+      "github": {"stars": 1, "repo": "Cynosphere/hjonk"}
+    }
+  ],
+  "meta": {"name": "hjonk", "description": "Cynthia's collection of modules."}
+}
