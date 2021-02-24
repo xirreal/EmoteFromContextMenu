@@ -1,0 +1,12 @@
+{
+  "main": "index.js",
+
+  "name": "Time Bar For All Activities",
+  "description": "Displays Spotify time bar for all activities that specify start and end timestamps.",
+
+  "tags": ["ui"],
+
+  "authors": ["150745989836308480"],
+
+  "version": "1.0.0"
+}
