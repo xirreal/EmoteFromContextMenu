@@ -1,6 +1,6 @@
 import * as webpackModules from "@goosemod/webpack";
 import * as logger from "@goosemod/logger";
-import showToast from "@goosemod/toast";
+import * as showToast from "@goosemod/toast";
 
 let unpatch;
 
