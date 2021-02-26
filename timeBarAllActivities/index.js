@@ -20,7 +20,12 @@ export default {
           stack.includes("renderTimeBar") ||
           stack.includes("renderTimePlayed")
         )
-          return activity != null;
+          return (
+            activity != null &&
+            activity.timestamps != null &&
+            activity.timestamps.start != null &&
+            activity.timestamps.end != null
+          );
         return oldExports(activity);
       };
       unpatch = () => (shouldRenderTimeBar.default = oldExports);
