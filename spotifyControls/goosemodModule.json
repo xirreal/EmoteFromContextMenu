@@ -1,0 +1,12 @@
+{
+  "main": "index.js",
+
+  "name": "Spotify Controls",
+  "description": "See and control what you're listening to on Spotify.",
+
+  "tags": ["react", "quick-actions"],
+
+  "authors": ["150745989836308480"],
+
+  "version": "1.0.0"
+}
