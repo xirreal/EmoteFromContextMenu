@@ -53,7 +53,7 @@ export default {
                     "Error fetching from: " + url,
                     err
                   );
-                  showToast("Couldn't create emoji.", {type: error});
+                  showToast("Couldn't create emoji.", {type: "error"});
                   return;
                 }
                 await EmojiActionCreators.uploadEmoji(
