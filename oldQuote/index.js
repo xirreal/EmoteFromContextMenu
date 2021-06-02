@@ -20,12 +20,14 @@ export default {
             lines[i] = "> " + lines[i];
           }
 
+          const author = "<@" + props.message.author.id + "> ";
+
           const out = lines.join("\n") + "\n";
 
           ComponentDispatch.dispatchToLastSubscribed(
             ComponentActions.INSERT_TEXT,
             {
-              content: out,
+              content: out + author,
             }
           );
         },
