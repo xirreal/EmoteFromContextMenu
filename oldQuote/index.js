@@ -1,16 +1,19 @@
 import * as webpackModules from "@goosemod/webpack";
-import {contextMenu} from "@goosemod/patcher";
+import { contextMenu } from "@goosemod/patcher";
+import { createItem, removeItem } from "@goosemod/settings";
+
+let setting = undefined;
 
 let unpatch;
 
 export default {
   goosemodHandlers: {
     onImport: () => {
-      const {ComponentDispatch} = webpackModules.findByProps(
+      const { ComponentDispatch } = webpackModules.findByProps(
         "ComponentDispatch"
       );
-      const {ComponentActions} = webpackModules.findByProps("ComponentActions");
-      const {Messages} = webpackModules.findByProps("Messages");
+      const { ComponentActions } = webpackModules.findByProps("ComponentActions");
+      const { Messages } = webpackModules.findByProps("Messages");
 
       unpatch = contextMenu.patch("message", {
         label: Messages.QUOTE,
@@ -24,18 +27,50 @@ export default {
 
           const out = lines.join("\n") + "\n";
 
-          ComponentDispatch.dispatchToLastSubscribed(
-            ComponentActions.INSERT_TEXT,
-            {
-              content: out + author,
-            }
-          );
+          if (!setting) {
+            ComponentDispatch.dispatchToLastSubscribed(
+              ComponentActions.INSERT_TEXT,
+              {
+                content: out,
+              }
+            );
+          } else {
+            ComponentDispatch.dispatchToLastSubscribed(
+              ComponentActions.INSERT_TEXT,
+              {
+                content: out + author,
+              }
+            );
+          }
         },
       });
     },
-    
+
+    onLoadingFinished: () => {
+      createItem("Old Quote", [
+        "1.0.0",
+
+        {
+          type: "header",
+          text: "Toggle the following features as per your liking"
+        },
+        {
+          type: "toggle",
+          text: "Mention the author",
+          subtext: "Adds mention of the author of the message you're quoting to",
+          onToggle: (c) => {
+            return setting = c;
+          },
+          isToggled: () => {
+            return false;
+          }
+        }
+      ])
+    },
+
     onRemove: () => {
       unpatch();
+      removeItem("Old Quote")
     }
   },
 };
