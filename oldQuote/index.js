@@ -1,19 +1,19 @@
 import * as webpackModules from "@goosemod/webpack";
-import { contextMenu } from "@goosemod/patcher";
-import { createItem, removeItem } from "@goosemod/settings";
+import {contextMenu} from "@goosemod/patcher";
+import {createItem, removeItem} from "@goosemod/settings";
+import {version} from "./goosemodModule.json";
 
-let setting = undefined;
+let mentionAuthor;
 
 let unpatch;
 
 export default {
   goosemodHandlers: {
     onImport: () => {
-      const { ComponentDispatch } = webpackModules.findByProps(
-        "ComponentDispatch"
-      );
-      const { ComponentActions } = webpackModules.findByProps("ComponentActions");
-      const { Messages } = webpackModules.findByProps("Messages");
+      const {ComponentDispatch} =
+        webpackModules.findByProps("ComponentDispatch");
+      const {ComponentActions} = webpackModules.findByProps("ComponentActions");
+      const {Messages} = webpackModules.findByProps("Messages");
 
       unpatch = contextMenu.patch("message", {
         label: Messages.QUOTE,
@@ -23,54 +23,46 @@ export default {
             lines[i] = "> " + lines[i];
           }
 
-          const author = "<@" + props.message.author.id + "> ";
+          const author = `<@${props.message.author.id}> `;
 
           const out = lines.join("\n") + "\n";
 
-          if (!setting) {
-            ComponentDispatch.dispatchToLastSubscribed(
-              ComponentActions.INSERT_TEXT,
-              {
-                content: out,
-              }
-            );
-          } else {
-            ComponentDispatch.dispatchToLastSubscribed(
-              ComponentActions.INSERT_TEXT,
-              {
-                content: out + author,
-              }
-            );
-          }
+          ComponentDispatch.dispatchToLastSubscribed(
+            ComponentActions.INSERT_TEXT,
+            {
+              content: out + (mentionAuthor ? author : ""),
+            }
+          );
         },
       });
     },
 
     onLoadingFinished: () => {
       createItem("Old Quote", [
-        "1.0.0",
+        version,
 
         {
           type: "header",
-          text: "Toggle the following features as per your liking"
+          text: "Toggle the following features as per your liking",
         },
         {
           type: "toggle",
           text: "Mention the author",
-          subtext: "Adds mention of the author of the message you're quoting to",
+          subtext:
+            "Adds mention of the author of the message you're quoting to",
           onToggle: (c) => {
-            return setting = c;
+            return (mentionAuthor = c);
           },
           isToggled: () => {
-            return setting
-          }
-        }
-      ])
+            return mentionAuthor;
+          },
+        },
+      ]);
     },
 
     onRemove: () => {
       unpatch();
-      removeItem("Old Quote")
-    }
+      removeItem("Old Quote");
+    },
   },
 };
