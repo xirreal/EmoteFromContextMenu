@@ -62,7 +62,7 @@ export default {
             return setting = c;
           },
           isToggled: () => {
-            return false;
+            return setting
           }
         }
       ])
