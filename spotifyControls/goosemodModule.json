@@ -4,9 +4,9 @@
   "name": "Spotify Controls",
   "description": "See and control what you're listening to on Spotify.",
 
-  "tags": ["react", "quick-actions"],
+  "tags": ["quick-actions"],
 
   "authors": ["150745989836308480"],
 
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
