@@ -167,8 +167,6 @@ export default {
         React = webpackModules.common.React;
       }
 
-      console.log(SpotifyPlayer);
-
       const AccountClasses = webpackModules.findByProps("usernameContainer");
       const panels = reactUtils.getOwnerInstance(
         document.querySelector(
