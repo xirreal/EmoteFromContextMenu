@@ -1,13 +1,9 @@
 import * as webpackModules from "@goosemod/webpack";
 import {PlayerStore} from "./PlayerStore";
-import {$, findInModules} from "./Utils";
+import {$} from "./Utils";
 import {SpotifyControls} from "./SpotifyControls";
 
-let {React} = webpackModules.common;
-while (!React) {
-  webpackModules.generateCommons();
-  React = webpackModules.common.React;
-}
+const {React} = webpackModules.common;
 const {useState, useRef, useEffect} = React;
 const Flux = webpackModules.findByProps("Store", "useStateFromStores");
 const {useStateFromStores} = Flux;
@@ -20,8 +16,12 @@ const contextMenu = webpackModules.findByProps(
 );
 
 const Menu = webpackModules.findByProps("MenuItem", "MenuStyle");
-const VolumeSlider = findInModules(".default.sliderContainer", "onValueRender")
-  .default;
+const VolumeSlider = webpackModules.find(
+  (x) =>
+    x.default &&
+    x.default.render &&
+    x.default.render.toString().indexOf(".default.sliderContainer") > -1
+).default;
 const clipboard = webpackModules.findByProps("SUPPORTS_COPY");
 
 function openContextMenu(event) {

@@ -161,11 +161,7 @@ export default {
       style.innerText = moduleCSS;
       document.head.appendChild(style);
 
-      let {React} = webpackModules.common;
-      while (!React) {
-        webpackModules.generateCommons();
-        React = webpackModules.common.React;
-      }
+      const {React} = webpackModules.common;
 
       const AccountClasses = webpackModules.findByProps("usernameContainer");
       const panels = reactUtils.getOwnerInstance(
@@ -180,6 +176,13 @@ export default {
     },
     onRemove: () => {
       unpatch();
+      const AccountClasses = webpackModules.findByProps("usernameContainer");
+      const panels = reactUtils.getOwnerInstance(
+        document.querySelector(
+          `section[class^="panels-"] > .${AccountClasses.container}`
+        )
+      );
+      panels.forceUpdate();
       document.head.removeChild(style);
     },
   },

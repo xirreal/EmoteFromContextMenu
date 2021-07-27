@@ -1,10 +1,5 @@
 import * as webpackModules from "@goosemod/webpack";
 
-let {React} = webpackModules.common;
-while (!React) {
-  webpackModules.generateCommons();
-  React = webpackModules.common.React;
-}
 const Flux = webpackModules.findByProps("Store", "useStateFromStores");
 const Dispatcher = webpackModules.findByProps("isDispatching");
 const SpotifySocket = webpackModules.findByProps("getActiveSocketAndDevice");
